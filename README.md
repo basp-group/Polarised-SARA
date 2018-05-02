@@ -1,1 +1,1 @@
-# Stokes Imaging
+Joint Stokes imaging in RI
