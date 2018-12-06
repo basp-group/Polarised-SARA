@@ -8,6 +8,6 @@
  
  **Experiments**: to reproduce the experiments reported in the article, run the file "main_file_joint_stokes_imaging.m"
  
- **Dependencies**: the present codes includes the MATLAB NUFFT algorithm available at
+ **Dependencies**: the present codes include the MATLAB NUFFT algorithm available at
  http://web.eecs.umich.edu/~fessler/irt/fessler.tgz, described in
  > J. A. Fessler and B. P. Sutton - **Nonuniform Fast Fourier Transforms Using Min-Max Interpolation**, *IEEE Trans. Image Process.*, vol. 51, n. 2, pp. 560--574, Feb. 2003.
