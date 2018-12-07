@@ -12,11 +12,11 @@ coeff = coef*lambda;
 sqrtuv = sqrt(u.^2 + v.^2);
 
 
-% zu(sqrtuv>coeff) = (1-coeff./sqrtuv(sqrtuv>coeff)).*u(sqrtuv>coeff);    
-% zv(sqrtuv>coeff) = (1-coeff./sqrtuv(sqrtuv>coeff)).*v(sqrtuv>coeff);
+zu(sqrtuv>coeff) = (1-coeff./sqrtuv(sqrtuv>coeff)).*u(sqrtuv>coeff);    
+zv(sqrtuv>coeff) = (1-coeff./sqrtuv(sqrtuv>coeff)).*v(sqrtuv>coeff);
 
-zu(sqrtuv>coeff) = (1-coeff(sqrtuv>coeff)./sqrtuv(sqrtuv>coeff)).*u(sqrtuv>coeff);    
-zv(sqrtuv>coeff) = (1-coeff(sqrtuv>coeff)./sqrtuv(sqrtuv>coeff)).*v(sqrtuv>coeff);
+% zu(sqrtuv>coeff) = (1-coeff(sqrtuv>coeff)./sqrtuv(sqrtuv>coeff)).*u(sqrtuv>coeff);    
+% zv(sqrtuv>coeff) = (1-coeff(sqrtuv>coeff)./sqrtuv(sqrtuv>coeff)).*v(sqrtuv>coeff);
 
 z = [zu;zv];
 end
