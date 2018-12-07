@@ -82,7 +82,7 @@ param_algo.tol_rw = 5e-3;
 param_algo.num_rw = 10; % Total number of reweights to be performed
 param_algo.beta = 0.1; 
 param_algo.sep = 1; % 0: projection onto single l2 ball; 1: projection onto separate balls
-param_algo.bright = 1; % 0: Stokes matrix; 1:Brightness matrix
+param_algo.bright = 0; % 0: Stokes matrix; 1:Brightness matrix
 if proj_l2 == 1
 method = 1; % For initialization to constrained formulation
 param_algo.method_change = 3; % 2: without pol. const or  3: with pol. const.
