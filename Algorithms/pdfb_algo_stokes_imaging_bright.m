@@ -47,14 +47,14 @@ for t = 1:param_algo.tmax
             dual_tilde1{i} = dual_var1{i} + sigma1*Psitw{i}(2*St_im{i}-St_im_old{i});
             
             if strcmp(dict,'TV')
-                dual_var1{i} = dual_tilde1{i} - sigma1*prox_tv(1,dual_tilde1{i}./sigma1, eta{i}/sigma1,Nx,Ny);
+                dual_var1{i} = dual_tilde1{i} - sigma1*prox_tv(1,dual_tilde1{i}./sigma1, eta(i)/sigma1,Nx,Ny);
                 g1{i} = Psiw{i}(dual_var1{i});
                 
             elseif strcmp(dict,'Dirac+TV')
                 dual_tilde4{i} = dual_var4{i} + sigma4*Psit_tv(2*St_im{i}-St_im_old{i});
                 dual_var1{i} = dual_tilde1{i} - sigma1*soft(dual_tilde1{i}./sigma1, eta(i)/sigma1);
                 dual_var4{i} = dual_tilde4{i} - sigma4*prox_tv(1,dual_tilde4{i}./sigma4, nu(i)/sigma4,Nx,Ny);
-                g1{i} = Psiw{i}(dual_var1{i}) + Psi_tv(dual_var4{i});
+                g1{i} = Psiw{i}(dual_var1{i}) + reshape(Psi_tv(dual_var4{i}),Nx,Ny);
             else
                 dual_var1{i} = dual_tilde1{i} - sigma1*soft(dual_tilde1{i}./sigma1, eta{i}/sigma1);
                 g1{i} = Psiw{i}(dual_var1{i});
@@ -147,10 +147,10 @@ for t = 1:param_algo.tmax
     %% Reweighting procedure
     
     check_cond = rm <= param_algo.rel_stop_crit && ((method == 3 && pol_thresh == 50) || method ~= 3)...
-        && ((proj_l2 == 1 && min_res(t) <= (tol*epsilon{n_test})) || proj_l2 ~= 1);
+        && ((proj_l2 == 1 && min_res(t) <= (tol*epsilon{n_test})) || (proj_l2 ~= 1 && t>10));
     
     
-    if rw < param_algo.num_rw && (check_cond || t-t_prev >= param_algo.tmax_rw)
+    if proj_l2 && rw < param_algo.num_rw && (check_cond || t-t_prev >= param_algo.tmax_rw)
         
         rw = rw + 1;
         fprintf('weighted l1 regularised case, iter = %e\n',rw);
@@ -181,8 +181,7 @@ for t = 1:param_algo.tmax
         nrmse_sol{rw} = nrmse;
         p_thresh_sol{rw} = p_thresh;
         cf_sol{rw} = c_f;
-        t_prev = t_sol{rw};
-                     
+        
         if rw == 1 && proj_l2 == 1
             method = param_algo.method_change;
             param_algo.rel_stop_crit = param_algo.rel_stop_crit_change;
@@ -192,6 +191,8 @@ for t = 1:param_algo.tmax
         
     elseif rw == param_algo.num_rw && check_cond
         break
+    elseif ~strcmp(dict,'SARA') && check_cond
+            break 
     end
     
 end
