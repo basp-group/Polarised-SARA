@@ -133,7 +133,6 @@ if bright
 else
     pdfb_algo_stokes_imaging; 
 end
-tend = toc(tstart);
 
 end
 
