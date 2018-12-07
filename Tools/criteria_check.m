@@ -8,13 +8,21 @@ for i = 1:P
     if method ~= 1
         %     l1_norm(t) = l1_norm(t) + eta(i)*sum(abs(Psitw{i}(St_im{i})));
         temp = Psitw{i}(St_im{i});
-        
+        temp1 = temp;
+        if strcmp(dict,'SARA')
+            l1_norm(t) = l1_norm(t) + sum(eta{i}.*abs(temp));
+        end
         if strcmp(dict,'TV')
             u = temp(1:Nx*Ny);
             v = temp(Nx*Ny+1:end);
             temp = sqrt(u.^2 + v.^2);
+            l1_norm(t) = l1_norm(t) + sum(eta(i).*abs(temp));
         end
-        l1_norm(t) = l1_norm(t) + sum(eta{i}.*abs(temp));
+        if strcmp(dict,'Dirac+TV')
+            temp = temp1+ temp;
+            l1_norm(t) = l1_norm(t) + sum(eta(i).*abs(temp));
+        end
+        
     end
     
     rel_sol{i}(t) = norm(St_im{i}(:) - St_im_old{i}(:))/norm(St_im_old{i}(:));
