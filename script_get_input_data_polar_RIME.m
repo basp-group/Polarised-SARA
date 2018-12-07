@@ -62,6 +62,7 @@ rng shuffle;
     R = length(v);
     
     y0 = cell(num_tests, 1);
+    yb = cell(num_tests, 1);
     sigma_noise = cell(num_tests, 1);
     
     %% generate noisy input data
