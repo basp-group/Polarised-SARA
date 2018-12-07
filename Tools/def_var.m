@@ -53,3 +53,5 @@ end
 
 init_var; % To initialize the variables
 
+t_prev = 0;
+

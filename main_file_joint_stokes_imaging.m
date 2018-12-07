@@ -4,9 +4,16 @@
 % 
 % Related paper:
 % Sparse interferometric Stokes imaging under polarization constraint 
+<<<<<<< HEAD
 % (Polarized SARA), MNRAS, 2018.
 % Jasleen Birdi, Audrey Repetti, Yves Wiaux
 %
+=======
+% (Polarized SARA), MNRAS, 2018.  
+% https://doi.org/10.1093/mnras/sty1182
+% Jasleen Birdi, Audrey Repetti, Yves Wiaux
+% 
+>>>>>>> 15a724ebf54e38f01ec7221bedfcecf1994025d4
 % Contact: jb36@hw.ac.uk
 % *************************************************************************
 
